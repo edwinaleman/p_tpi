@@ -9,16 +9,16 @@ from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
 from .forms import *
 
-
 # Create your views here.
 
 #vista de prueba
 def pagInicial(request):
-	return render(request, 'usuario/paginaInicial.html')
+	empresa=Empresa.objects.all()
+	return render(request, 'usuario/paginaInicial.html', {'empresa':empresa})
 
 class Vuser(CreateView):
 	model = User
-	template_name = "usuario/r2.html"
+	template_name = "usuario/regEstudiante.html"
 	form_class = Fuser1
 	success_url = reverse_lazy('usuario:pag_inicial')
 
@@ -30,4 +30,4 @@ def add_user(request):
 			return redirect('usuario:pag_inicial')
 	else:
 		perfil_form=Fuser()
-	return render(request, 'usuario/reg1.html', {'perfil_form': perfil_form})
+	return render(request, 'usuario/regEmpresa.html', {'perfil_form': perfil_form})

@@ -20,5 +20,6 @@ from django.contrib.auth.views import login
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^usuario/', include('apps.usuario.urls', namespace="usuario")),
+    url(r'^boltra/', include('apps.empleo.urls', namespace="empleo")),
     url(r'^$', login, {'template_name':'usuario/login.html'}, name="login"),
 ]

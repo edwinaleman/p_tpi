@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>LOGIN</title>
-</head>
-<body>
+{% extends "inicio.html" %}
+
+{% block title %}
+	Empresa
+{% endblock %}
+
+{% block baner %}
+{% endblock %}
+
+{% block menu-main %}
+{% endblock %}
+
+{% block content %}
+<br><br><br>
 	<form action="" method="post">
 		{% csrf_token %}
-		<label for="username">Nombre de usuario:</label>
+		<label for="username">Usuario:</label>
 		<input type="text" name="username">
 		<label for="username">Contraseña:</label>
 		<input type="password" name="password">
 		<input type="submit" value="ingresar">
 	</form>
-</body>
-</html>
+{% endblock %}
