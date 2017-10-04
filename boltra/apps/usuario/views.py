@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, render_to_response, redirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
@@ -15,6 +17,10 @@ from .forms import *
 def pagInicial(request):
 	empresa=Empresa.objects.all()
 	return render(request, 'usuario/paginaInicial.html', {'empresa':empresa})
+
+def logout_view(request):
+    logout(request)
+    return redirect('empleo:pag_inicio')
 
 class Vuser(CreateView):
 	model = User

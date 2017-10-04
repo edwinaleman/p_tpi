@@ -25,6 +25,7 @@ body{
 	display:inline-block;
 	font-family: verdana;
 	font-size: 80%;
+	color:white;
 }
 
 .menu-start ul li .btn-right{
@@ -44,6 +45,10 @@ body{
 	background: black;
 	text-decoration: none;
 	font-style: oblique;
+}
+
+.menu-start ul li .username:hover{
+	text-decoration: underline;
 }
 /*Banner principal*/
 .banner{
