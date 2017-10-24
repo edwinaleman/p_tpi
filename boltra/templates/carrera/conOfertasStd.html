@@ -1,0 +1,23 @@
+{% extends "inicio.html" %}
+
+{% block titular %}
+Carreras
+{% endblock %}
+
+{% block contentInit %}
+	{% for oferta in ofertas %}
+	<table>
+		<tbody>
+			
+			<tr>
+				<td><a href="{% url 'empleo:des_oferta' oferta.id %}">{{ oferta.nombre }}
+					<br>{{ oferta.empresa_id }}</a>
+				</td>
+			</tr>
+
+			{% empty %}
+			<h1>No hay ninguna oferta para esta carrera</h1>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "inicio.html" %}
+
+{% block titular %}
+Carreras
+{% endblock %}
+
+{% block contentInit %}
+{% for carrera in carreras %}
+	<a href="{% url 'empleo:con_oferta_std' carrera.id %}">{{carrera.nombreCarrera}}</a><br>
+{% endfor %}
+{% endblock %}

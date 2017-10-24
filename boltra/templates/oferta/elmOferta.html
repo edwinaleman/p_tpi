@@ -1,0 +1,15 @@
+{% extends "inicio.html" %}
+
+{% block titular %}
+Mis Ofertas
+{% endblock %}
+
+{% block contentInit %}
+<form action="" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<p> Realmente quiere eliminar la oferta de empleo {{oferta.nombre}}</p>
+		<a href="{% url 'empleo:con_oferta' %}">No, Cancelar</a>
+		<button type="submit">Si, Eliminar</button>
+	</form>	
+{% endblock %}

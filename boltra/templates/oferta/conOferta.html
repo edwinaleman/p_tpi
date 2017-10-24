@@ -1,0 +1,23 @@
+{% extends "inicio.html" %}
+
+{% block titular %}
+Mis Ofertas
+{% endblock %}
+
+{% block contentInit %}
+<table>
+	<tbody>
+		{% for oferta in ofertas %}
+			{% if oferta.empresa_id == user.id %}
+			<tr>
+				<td>{{ oferta.nombre }}</td>
+				<td>{{ oferta.carrera_id }}</td>
+				<td><a href="{% url 'empleo:des_oferta' oferta.id %}">Revisar</a></td>
+			</tr>
+			{% endif %}
+		{% empty %}
+		<h1>No ha creado ninguna oferta</h1>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

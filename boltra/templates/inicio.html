@@ -22,7 +22,12 @@
 					<li><a href="{% url 'usuario:pag_logout' %}" class="btn-right">Cerrar Sesión</a></li>
 					<li>Usuario en linea: <a href="#" class="username">{{user.username}}</a></li>	
 				{% else %}
-					<li><a href="#" class="btn-right">Registrarse</a></li>
+					<li><a href="/" class="btn-right">Registrase</a>
+						<!-- <ul>
+							<li><a href="{% url 'usuario:reg_estudiante' %}" class="btn-right">Estudiante</a></li>
+							<li><a href="{% url 'usuario:reg_empresa' %}" class="btn-right">Empresa</a></li>
+						</ul>-->
+					</li>
 					<li><a href="/" class="btn-right">Ingresar</a></li>
 				{% endif %}
 			</ul>
@@ -38,15 +43,27 @@
 		{% block menu-main %}
 		<nav class="menu-main">
 			<ul>
-				<li><a href="">Inicio</a></li>
-				<li><a href="">Empleos</a></li>
-					<ul>
-						{% for facultad in facultad %}
-						<li><a href="">{{facultad.nombreFacultad}}</a></li>
-						{% endfor %}
-					</ul>
-				<li><a href="">Compra/Venta</a></li>
-				<li><a href="">Nuevo!</a></li>
+				<li><a href="{% url 'empleo:pag_inicio' %}">Inicio</a></li>
+
+				{% if user.is_authenticated %}
+
+					{% if user.get_short_name == '' %}
+						<li><a href="{% url 'empleo:con_oferta' %}">Mis ofertas</a></li>
+						<li><a href="{% url 'empleo:reg_oferta' %}">Crear oferta</a></li>
+						<li><a href="">Mi perfil</a></li>
+					{%  else %}
+						<li><a href="">Empleos</a>
+							<ul>
+								{% for facultad in facultad %}
+								<li><a class="facultad" href="{% url 'empleo:lst_carrera' facultad.id %}">{{facultad.nombreFacultad}}</a></li>
+								{% endfor %}
+							</ul>
+						</li>
+						<li><a href="">Nuevo!</a></li>
+					{% endif %}
+
+				{% endif %}
+
 				<li><a href="">Nosotros</a></li>
 			</ul>
 		</nav>
@@ -56,6 +73,16 @@
 	{% block content %}
 
 	{% endblock %}
+
+	<div  class="content-init">
+	<h1 class="titular">
+		{% block titular %}
+		{% endblock %}
+	</h1>
+	{% block contentInit %}
+
+	{% endblock %}		
+	</div>
 
 	<footer>
 

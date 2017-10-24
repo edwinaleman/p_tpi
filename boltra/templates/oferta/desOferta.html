@@ -1,0 +1,42 @@
+{% extends "inicio.html" %}
+
+{% block titular %}
+Mis Ofertas
+{% endblock %}
+
+{% block contentInit %}
+
+<table>
+	<tr>
+		<td>Titulo de la oferta:</td>
+		<td>{{oferta.nombre}}</td>
+	</tr>
+	<tr>
+		<td>Carrera:</td>
+		<td>{{oferta.carrera_id}}</td>
+	</tr>
+	<tr>
+		<td>Numero de puestos:</td>
+		<td>{{oferta.numPuestos}}</td>
+	</tr>
+	<tr>
+		<td>Tipo de comtrato:</td>
+		<td>{{oferta.tipoContrato}}</td>
+	</tr>
+	<tr>
+		<td>Nivel de experioencia:</td>
+		<td>{{oferta.nivelExperiencia}}</td>
+	</tr>
+</table><br>
+
+{% if user.is_authenticated %}
+{% if user.get_short_name == '' %}
+	<a href="{% url 'empleo:edt_oferta' oferta.id %}">Editar</a>
+	<a href="{% url 'empleo:elm_oferta' oferta.id %}">Eliminar</a>
+	<a href="">Desabilitar</a>
+	<a href="{% url 'empleo:con_oferta' %}">Volver atras</a>
+{% else %}
+{% endif %}
+{% endif %}
+
+{% endblock %}
